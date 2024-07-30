@@ -1,0 +1,48 @@
+version: "3.7"
+services:
+    oms_api:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        image: oms_api
+        container_name: "oms_api"
+        restart: unless-stopped
+        working_dir: /var/www/html
+        volumes:
+            - ../:/var/www/html
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        environment:
+            PHP_IDE_CONFIG: serverName=server
+        networks:
+            - oms-network
+            - blca_blca-network
+    nginx:
+        image: nginx:latest
+        container_name: "oms_nginx"
+        restart: unless-stopped
+        ports:
+            - "8000:80"
+        volumes:
+            - ../:/var/www/html
+            - ./conf/nginx:/etc/nginx/conf.d
+        links:
+            - oms_api
+        networks:
+            - oms-network
+            - blca_blca-network
+    redis:
+        image: redis:alpine
+        container_name: "oms_redis"
+        volumes:
+            - ./redis:/data
+        ports:
+            - "6079:6379"
+        networks:
+            - oms-network
+            - blca_blca-network
+networks:
+    oms-network:
+        driver: bridge
+    blca_blca-network:
+        external: true

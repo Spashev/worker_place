@@ -1,0 +1,93 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "Project from bloomex Inc.",
+    "keywords": ["laravel", "framework"],
+    "license": "MIT",
+    "require": {
+        "php": "8.1.27",
+        "bloomex-common/blca-database": "dev-main",
+        "bloomex-common/blca-models": "dev-main",
+        "bloomex-common/core": "dev-main",
+        "bloomex-common/general": "dev-main",
+        "guzzlehttp/guzzle": "7.8",
+        "intervention/image-laravel": "^1.2",
+        "laravel/framework": "10.29",
+        "laravel/sanctum": "3.3.1",
+        "laravel/tinker": "2.8.2",
+        "league/flysystem-aws-s3-v3": "^3.25",
+        "predis/predis": "^2.0",
+        "spatie/laravel-permission": "^6.4",
+        "staudenmeir/eloquent-has-many-deep": "^1.7"
+    },
+    "require-dev": {
+        "fakerphp/faker": "1.23.0",
+        "laravel/pint": "1.13.4",
+        "laravel/sail": "1.26",
+        "mockery/mockery": "1.6.6",
+        "nunomaduro/collision": "7.10",
+        "phpunit/phpunit": "10.4.1",
+        "spatie/laravel-ignition": "2.3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "ssh://git@gitlab.necs.ca/common/blca-models.git"
+        },
+        {
+            "type": "vcs",
+            "url": "ssh://git@gitlab.necs.ca/common/blca-database.git"
+        },
+        {
+            "type": "vcs",
+            "url": "ssh://git@gitlab.necs.ca/common/core.git"
+        },
+        {
+            "type": "vcs",
+            "url": "ssh://git@gitlab.necs.ca/common/general.git"
+        }
+    ]
+}

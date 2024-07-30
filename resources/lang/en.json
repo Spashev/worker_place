@@ -1,0 +1,13 @@
+{
+  "columns_saved": "The columns for the user are saved",
+  "profile_updated": "Profile successfully updated",
+  "access_failed": "Sorry.. You dont have access to this data",
+  "error_save_image": "Error saving an image",
+  "order_not_found": "Error: order not found",
+  "error_removed_image": "Image deletion error",
+  "error_save_history": "Error saving data in the order history",
+  "image_data_saved": "The image has been saved",
+  "image_data_removed": "The image has been deleted",
+  "history_data_saved": "The data has been saved",
+  "wrong_status": "The order has wrong status :status, operation cannot be continued"
+}
